@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>InfoRetos Villa Cielo</title>
+<style>
+:root{--bg:#e8f3fb;--card:#fff;--ink:#17324d;--mut:#5a7186;--navy:#12457a;--green:#2fa35a;--blue:#2d8fe0;--yel:#f2b134;--pur:#8a6fd6;--soft:#eaf4fc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a27;--card:#16283a;--ink:#e6eef6;--mut:#9db2c5;--soft:#1b3349}}
+:root[data-theme="dark"]{--bg:#0d1a27;--card:#16283a;--ink:#e6eef6;--mut:#9db2c5;--soft:#1b3349}
+*{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,Arial,sans-serif}
+#app{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(var(--bg),var(--soft))}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--card)}
+.logo{font-weight:800;color:var(--navy);line-height:1.1}.logo small{display:block;color:var(--green);font-size:.9em}
+.pill{background:var(--soft);border-radius:20px;padding:6px 12px;font-size:.85rem;font-weight:600}
+main{flex:1;padding:16px;overflow-y:auto}
+.screen{display:none}.screen.on{display:block}
+h1{font-size:1.6rem;margin:.2em 0}h2{font-size:1.2rem;margin:.4em 0}
+p{line-height:1.45}
+.back{background:none;border:0;color:var(--blue);font-weight:600;cursor:pointer;padding:0 0 10px;font-size:.95rem}
+.btn{display:block;width:100%;border:0;border-radius:28px;padding:14px;font-size:1rem;font-weight:700;color:#fff;background:var(--green);cursor:pointer;margin-top:14px}
+.btn.navy{background:var(--navy)}
+.card{background:var(--card);border-radius:16px;padding:14px;margin:12px 0;box-shadow:0 2px 8px #0001}
+.hero{text-align:center;padding:10px 0}
+.hero .big{font-size:3rem;color:var(--navy)}
+.hero h1{color:var(--navy);font-size:2.2rem}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;font-size:.75rem;margin-top:14px}
+.chips div{background:var(--card);border-radius:12px;padding:10px 2px}.chips span{font-size:1.6rem;display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mod{border:0;border-radius:16px;padding:18px 10px;color:#fff;font-weight:700;cursor:pointer;min-height:140px;font-size:.95rem}
+.mod span{display:block;font-size:2rem;margin-bottom:6px}.mod small{display:block;opacity:.9;font-size:.7rem;margin-bottom:4px}
+.m1{background:var(--blue)}.m2{background:var(--green)}.m3{background:var(--yel);color:#3b2a00}.m4{background:var(--pur)}
+.banner{background:var(--blue);color:#fff;border-radius:14px;padding:16px;font-weight:700}
+.ck{list-style:none;padding:0}.ck li{padding:6px 0 6px 28px;position:relative}.ck li:before{content:"✔";position:absolute;left:0;color:var(--green)}
+.video{background:linear-gradient(135deg,#2d8fe0,#2fa35a);color:#fff;border-radius:14px;height:150px;display:flex;align-items:center;justify-content:center;font-size:3rem;cursor:pointer;margin:10px 0}
+.res a{display:block;color:var(--blue);padding:5px 0}
+.q{margin:14px 0}.q b{display:block;margin-bottom:6px}
+.q label{display:block;padding:10px 12px;border:1px solid var(--soft);border-radius:10px;margin:6px 0;cursor:pointer;background:var(--card)}
+.score{width:130px;height:130px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:800;color:var(--navy);background:conic-gradient(var(--green) calc(var(--p)*1%),var(--soft) 0)}
+.score i{font-style:normal;background:var(--card);width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+nav{display:flex;background:var(--navy);position:sticky;bottom:0}
+nav button{flex:1;background:none;border:0;color:#b9d2ea;padding:10px 2px;font-size:.75rem;cursor:pointer}
+nav button span{display:block;font-size:1.3rem}nav button.on{color:#7be0a0;font-weight:700}
+.f input,.f select{width:100%;padding:12px;border-radius:10px;border:1px solid var(--soft);background:var(--card);color:var(--ink);font-size:1rem;margin:6px 0}
+.seg{display:flex;gap:8px}.seg button{flex:1;padding:14px 6px;border-radius:14px;border:2px solid var(--soft);background:var(--card);color:var(--ink);font-weight:700;cursor:pointer}.seg button.on{border-color:var(--green);background:var(--soft)}
+.mod.lock{background:#8a98a6;cursor:not-allowed}.mod.done:after{content:" ✓";font-size:1.1rem}
+table{width:100%;border-collapse:collapse;font-size:.8rem}td,th{padding:6px 3px;text-align:center;border-bottom:1px solid var(--soft)}td:first-child,th:first-child{text-align:left}
+.bar{height:8px;background:var(--soft);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green)}
+.code{font-size:1.8rem;letter-spacing:4px;font-weight:800;color:var(--navy);text-align:center}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:20px;opacity:0;transition:.3s;pointer-events:none}
+#toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div id="app">
+<header><div class="logo">🌄 InfoRetos<small>Villa Cielo</small></div><div class="pill" id="who" onclick="go('perfil')">👤 Ingresar</div></header>
+<main>
+<section class="screen on" id="inicio">
+<div class="hero"><div class="big">🌄</div><h1>InfoRetos<br><span style="color:var(--green)">Villa Cielo</span></h1><b>Ambiente Educativo Tecnológico</b></div>
+<p>Aprende a identificar información confiable, analizarla y utilizar herramientas digitales para resolver retos de tu comunidad.</p>
+<button class="btn navy" onclick="start()">Comenzar ›</button>
+<div class="chips"><div><span>🔍</span>Búsqueda de información</div><div><span>💻</span>Tecnología</div><div><span>🧠</span>Pensamiento crítico</div><div><span>👥</span>Comunidad</div></div>
+</section>
+
+<section class="screen" id="perfil">
+<h1>Crea tu perfil</h1>
+<div class="seg"><button id="rE" onclick="setRole('e')">🎒 Estudiante</button><button id="rD" onclick="setRole('d')">🧑‍🏫 Docente</button></div>
+<div class="f card"><input id="fn" placeholder="Tu nombre completo">
+<div id="fE"><select id="fg"><option>Grado 6°</option><option>Grado 7°</option><option>Grado 8°</option><option selected>Grado 9°</option><option>Grado 10°</option><option>Grado 11°</option></select><input id="fc" placeholder="Código de tu docente (ej. AB12)" maxlength="6" style="text-transform:uppercase"></div>
+<div id="fD" style="display:none"><input id="fpw" type="password" placeholder="Contraseña de docente" autocomplete="off"><button class="btn navy" type="button" id="fbt" style="margin-top:6px" onclick="unlockT()">Verificar</button><div id="fK" style="display:none"><input id="fk" placeholder="Nombre del curso (ej. 9°A)"><input id="fk2" placeholder="Tu código de curso (opcional, 4-6 letras)" maxlength="6" style="text-transform:uppercase"></div><small>Se generará un código para compartir con tus estudiantes.</small></div></div>
+<button class="btn" onclick="save()">Guardar perfil</button>
+<button class="btn navy" id="lo" style="display:none" onclick="logout()">Cerrar sesión</button>
+</section>
+
+<section class="screen" id="panel">
+<h1>Panel docente</h1>
+<div class="card"><small>Código del curso <span id="pk"></span></small><div class="code" id="pc2"></div><small>Compártelo con tus estudiantes para que se unan.</small></div>
+<div class="card"><b>Seguimiento de estudiantes</b><div id="tb" style="overflow-x:auto"></div></div>
+</section>
+
+<section class="screen" id="menu">
+<h1>¡Bienvenido/a!</h1><p>Completa cada módulo para desbloquear el siguiente.</p>
+<div class="grid" id="mods"></div>
+<div class="card" style="margin-top:16px"><b>Tu avance</b><div class="bar" style="margin-top:8px"><i id="pb"></i></div></div>
+</section>
+
+<section class="screen" id="modulo">
+<button class="back" onclick="go('menu')">← Volver al menú</button>
+<div class="banner" id="mt"></div>
+<div class="card"><h2>Objetivos</h2><ul class="ck" id="mo"></ul></div>
+<button class="btn" onclick="go('contenido')">Comenzar módulo ›</button>
+</section>
+
+<section class="screen" id="contenido">
+<button class="back" onclick="go('modulo')">← Volver</button>
+<h2 id="ct"></h2><p id="cx"></p>
+<div class="video" onclick="toast('Aquí irá el video del tema')">▶</div>
+<div class="card res"><b>Recursos adicionales</b><a href="#" onclick="toast('Guía de apoyo (PDF) próximamente');return false">📄 Guía de apoyo (PDF)</a><a href="#" onclick="toast('Infografía próximamente');return false">📊 Infografía</a><a href="#" onclick="toast('Enlace próximamente');return false">🔗 Enlace de consulta</a></div>
+<button class="btn" onclick="go('reto')">Continuar ›</button>
+</section>
+
+<section class="screen" id="reto">
+<button class="back" onclick="go('contenido')">← Volver</button>
+<h2 id="rt"></h2>
+<div class="card"><b>Tu misión:</b><p id="rm"></p></div>
+<div class="card"><b>Producto final:</b> 📝 Ficha de análisis (PDF o Word)</div>
+<button class="btn" onclick="go('eval')">Iniciar reto ›</button>
+</section>
+
+<section class="screen" id="eval">
+<button class="back" onclick="go('reto')">← Volver</button>
+<h2 id="et"></h2><div id="quiz"></div>
+<button class="btn" onclick="send()">✈ Enviar evaluación</button>
+</section>
+
+<section class="screen" id="result">
+<h1 id="rh"></h1>
+<div class="card" style="text-align:center"><b>Tu puntaje</b><div class="score" id="sc"><i id="pc"></i></div><b id="lv"></b><p id="fb"></p></div>
+<button class="btn" id="rb" onclick="go('menu')">🏠 Volver al menú</button>
+</section>
+</main>
+<nav>
+<button data-t="inicio" class="on" onclick="go('inicio')"><span>🏠</span>Inicio</button>
+<button data-t="menu" onclick="go('menu')"><span>📖</span>Módulos</button>
+<button data-t="panel" onclick="go('panel')"><span>📊</span>Panel</button>
+<button data-t="perfil" onclick="go('perfil')"><span>👤</span>Perfil</button>
+</nav>
+</div>
+<div id="toast"></div>
+<script>
+var M=[
+{t:"Buscar y reconocer información",c:"m1",i:"🔍",o:["Identificar fuentes de información digital confiables.","Reconocer autoría, propósito y vigencia."],tt:"Tema 1: ¿Qué es una fuente confiable?",x:"Una fuente confiable ofrece información verificable, actualizada y con un autor reconocido. En internet no todas lo son.",r:"Analiza una noticia o publicación de tu comunidad y determina si es confiable.",q:[["¿Cuál fuente es más confiable?",["Un blog sin autor","Un periódico nacional","Un video sin referencias"],1],["¿Qué revisas primero en una publicación?",["Los likes","Autor y fecha","El color"],1]]},
+{t:"Verificar y comparar fuentes",c:"m2",i:"✅",o:["Contrastar una noticia en varias fuentes.","Detectar información falsa."],tt:"Tema 2: Contrastar información",x:"Verificar es buscar la misma información en al menos dos fuentes independientes y revisar si presentan evidencias.",r:"Compara cómo dos medios cuentan un mismo hecho local y señala las diferencias.",q:[["Para verificar una noticia, lo mejor es:",["Reenviarla","Compararla con otras fuentes","Confiar en el titular"],1],["Una evidencia sólida es:",["Un rumor","Un dato oficial citado","Una opinión anónima"],1]]},
+{t:"Analizar y tomar decisiones",c:"m3",i:"🧠",o:["Analizar información para decidir con criterio.","Argumentar una conclusión."],tt:"Tema 3: Pensamiento crítico",x:"Pensar críticamente es preguntarse quién habla, con qué intención y con qué pruebas antes de decidir.",r:"Analiza un problema de tu comunidad y propone una decisión argumentada.",q:[["Pensar críticamente implica:",["Aceptar todo","Cuestionar y buscar pruebas","Ignorar opiniones"],1],["Una buena conclusión debe:",["Tener argumentos","Ser larga","Ser popular"],0]]},
+{t:"Crear soluciones digitales",c:"m4",i:"💻",o:["Usar herramientas digitales para resolver un reto.","Presentar tu solución a la comunidad."],tt:"Tema 4: Herramientas digitales",x:"Las herramientas digitales (documentos, mapas, presentaciones) ayudan a comunicar soluciones a problemas reales.",r:"Crea una solución digital para un reto de tu comunidad y preséntala.",q:[["Una solución digital debe:",["Resolver una necesidad real","Ser complicada","No tener objetivo"],0],["Para presentar tu solución usas:",["Solo texto","Una herramienta adecuada","Nada"],1]]}];
+var P=JSON.parse(ld('ir_p')||'null'),G=JSON.parse(ld('ir_g')||'{}'),cur=0,ans={},db=null,uid=null,unsub=null,rl='e';
+function ld(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function sv(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function $(i){return document.getElementById(i)}
+var ready=(async function(){try{var u=await claude.use("user");uid=u&&await u.id();db=await claude.use("db")}catch(e){}
+if(!uid){uid=ld('ir_id')||('u'+Math.random().toString(36).slice(2,10));sv('ir_id',uid)}
+if(P&&P.r=='e')push();who()})();
+function T(p){return Promise.race([p,new Promise(function(a,j){setTimeout(function(){j('t')},5000)})])}
+function who(){$('who').textContent=P?(P.r=='d'?'🧑‍🏫 ':'👤 ')+P.n.split(' ')[0]:'👤 Ingresar';$('lo').style.display=P?'block':'none'}
+var okT=false,HK='9f717fd75fabd92e6a191b2192655e3b451cc1dd9dff792bd79dfe18a1c83454';
+async function unlockT(){try{var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('inforetos|'+$('fpw').value));var x=Array.from(new Uint8Array(b)).map(function(v){return v.toString(16).padStart(2,'0')}).join('');
+if(x===HK){okT=true;$('fK').style.display='block';$('fpw').style.display='none';$('fbt').style.display='none';toast('Acceso de docente verificado ✅')}else toast('Contraseña incorrecta')}catch(e){toast('No se pudo verificar la contraseña')}}
+function setRole(r){rl=r;$('rE').classList.toggle('on',r=='e');$('rD').classList.toggle('on',r=='d');$('fE').style.display=r=='e'?'block':'none';$('fD').style.display=r=='d'?'block':'none'}
+setRole('e');
+function start(){go(!P?'perfil':P.r=='d'?'panel':'menu')}
+async function save(){try{await T(ready)}catch(e){}
+var n=$('fn').value.trim();if(!n){toast('Escribe tu nombre');return}
+if(rl=='d'){if(!okT){toast('Ingresa la contraseña de docente');return}var k=$('fk').value.trim()||'Mi curso',c=($('fk2').value.trim()||Math.random().toString(36).slice(2,6)).toUpperCase().replace(/[^A-Z0-9]/g,'');if(c.length<4){toast('El código necesita al menos 4 letras o números');return}
+try{if(db){var d=await T(db.collection('classes').doc(c).get());if(d.exists&&d.data().t&&d.data().t!==uid){toast('Ese código ya está en uso, elige otro');return}await T(db.collection('classes').doc(c).set({t:uid,k:k}))}}catch(e){}
+P={r:'d',n:n,k:k,c:c}}
+else{var c=$('fc').value.trim().toUpperCase();if(!c){toast('Pide el código a tu docente');return}
+try{if(db){var d=await T(db.collection('classes').doc(c).get());if(!d.exists){toast('Ese código no existe');return}}}catch(e){}
+P={r:'e',n:n,g:$('fg').value,c:c};G={}}
+sv('ir_p',JSON.stringify(P));sv('ir_g',JSON.stringify(G));who();push();start()}
+function logout(){P=null;G={};try{localStorage.removeItem('ir_p');localStorage.removeItem('ir_g')}catch(e){}if(unsub)unsub();who();go('inicio')}
+function push(){if(!db||!P||P.r!='e')return;try{db.collection('students').doc(uid).set({n:P.n,g:P.g,c:P.c,p:G,u:Date.now()}).catch(function(){})}catch(e){}}
+function unlocked(i){return i==0||G['m'+(i-1)]>=60}
+function menu(){$('mods').innerHTML=M.map(function(m,i){var u=unlocked(i),d=G['m'+i]>=60;return '<button class="mod '+m.c+(u?'':' lock')+(d?' done':'')+'" onclick="openMod('+i+')"><span>'+(u?m.i:'🔒')+'</span><small>MÓDULO '+(i+1)+'</small>'+m.t+'</button>'}).join('');
+$('pb').style.width=M.filter(function(m,i){return G['m'+i]>=60}).length/M.length*100+'%'}
+function openMod(i){if(!P){go('perfil');return}if(P.r=='d'){toast('Los docentes ven el seguimiento en el Panel');return}
+if(!unlocked(i)){toast('🔒 Completa el módulo '+i+' para desbloquear este');return}
+cur=i;var m=M[i];$('mt').innerHTML='Módulo '+(i+1)+'<br>'+m.t;$('mo').innerHTML=m.o.map(function(o){return '<li>'+o+'</li>'}).join('');
+$('ct').textContent=m.tt;$('cx').textContent=m.x;$('rt').textContent='🎯 Reto '+(i+1)+': '+m.t;$('rm').textContent=m.r;$('et').textContent='📋 Evaluación del Reto '+(i+1);
+ans={};$('quiz').innerHTML=m.q.map(function(q,a){return '<div class="q"><b>'+(a+1)+'. '+q[0]+'</b>'+q[1].map(function(o,j){return '<label><input type="radio" name="q'+a+'" onchange="ans['+a+']='+j+'"> '+o+'</label>'}).join('')+'</div>'}).join('');go('modulo')}
+function send(){var q=M[cur].q;if(Object.keys(ans).length<q.length){toast('Responde todas las preguntas');return}
+var ok=q.filter(function(x,i){return ans[i]===x[2]}).length,p=Math.round(ok/q.length*100),pass=p>=60;
+if(!(G['m'+cur]>p))G['m'+cur]=p;sv('ir_g',JSON.stringify(G));push();
+$('sc').style.setProperty('--p',p);$('pc').textContent=p+'%';$('rh').textContent=pass?'¡Buen trabajo! ✅':'¡Casi lo logras!';
+$('lv').textContent=pass?'Aprobado':'Necesitas 60% para avanzar';
+$('fb').textContent=pass?(cur<M.length-1?'Desbloqueaste el módulo '+(cur+2)+'.':'¡Completaste todos los módulos!'):'Repasa el tema e inténtalo de nuevo.';
+$('rb').textContent=pass?'🏠 Volver a módulos':'↻ Reintentar';$('rb').onclick=function(){pass?go('menu'):openMod(cur)};go('result')}
+function panel(){if(!P||P.r!='d'){$('tb').textContent='Esta sección es solo para docentes.';return}
+$('pk').textContent='· '+P.k;$('pc2').textContent=P.c;
+if(!db){$('tb').textContent='El seguimiento compartido no está disponible en esta vista.';return}
+if(unsub)return;try{unsub=db.collection('students').where('c','==',P.c).onSnapshot(function(s){
+var r=s.docs.map(function(d){return d.data()});
+$('tb').innerHTML=r.length?'<table><tr><th>Estudiante</th>'+M.map(function(m,i){return '<th>M'+(i+1)+'</th>'}).join('')+'<th>Avance</th></tr>'+r.map(function(x){var p=x.p||{},n=M.filter(function(m,i){return p['m'+i]>=60}).length;
+return '<tr><td>'+esc(x.n)+'<br><small>'+esc(x.g)+'</small></td>'+M.map(function(m,i){return '<td>'+(p['m'+i]!=null?p['m'+i]+'%':'—')+'</td>'}).join('')+'<td><div class="bar"><i style="width:'+n/M.length*100+'%"></i></div></td></tr>'}).join('')+'</table>':'Aún no hay estudiantes en tu curso.'},function(){$('tb').textContent='No se pudo leer el seguimiento.'})}catch(e){}}
+function esc(t){return String(t||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function go(id){
+if((id=='menu'||id=='modulo')&&!P){id='perfil'}
+if(id=='menu')menu();if(id=='panel')panel();
+if(id=='perfil'&&P){$('fn').value=P.n}
+document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('on',s.id===id)});
+document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.t===id)});
+window.scrollTo(0,0)}
+function toast(t){var e=$('toast');e.textContent=t;e.classList.add('show');setTimeout(function(){e.classList.remove('show')},2400)}
+</script>
+</body>
+</html>
