@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>InfoRetos Villa Cielo</title>
+<meta name="theme-color" content="#12457a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌄%3C/text%3E%3C/svg%3E">
 <style>
 :root{--bg:#e8f3fb;--card:#fff;--ink:#17324d;--mut:#5a7186;--navy:#12457a;--green:#2fa35a;--blue:#2d8fe0;--yel:#f2b134;--pur:#8a6fd6;--soft:#eaf4fc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a27;--card:#16283a;--ink:#e6eef6;--mut:#9db2c5;--soft:#1b3349;--navy:#8cc4f5}}
@@ -139,6 +141,14 @@ nav{width:calc(100% - 24px);max-width:560px;align-self:center}
 .c_d{font-size:.95rem;max-width:560px;margin:14px auto}.c_m{display:inline-block;background:#e6f6ec;color:#1d7a43;padding:6px 16px;border-radius:20px;font-weight:700}
 .c_f{display:flex;justify-content:space-around;align-items:flex-end;margin-top:20px;gap:8px}.c_f b{display:block;border-top:1px solid #17324d;padding-top:4px;font-size:.85rem}.c_f small{color:#5a7186}.seal{font-size:3.4rem}
 @media print{body *{visibility:hidden}.cert,.cert *{visibility:visible}.cert{position:absolute;left:0;top:0;width:100%;box-shadow:none}html,body{background:#fff!important}@page{size:landscape;margin:10mm}}
+/* ===== Panel docente ===== */
+.stt{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}.stt div{background:var(--card);border-radius:16px;padding:12px 4px;text-align:center;box-shadow:0 6px 16px #12457a14}
+.stt b{display:block;font-size:1.6rem;color:var(--navy)}.stt small{color:var(--mut);font-size:.75rem}.stt div:nth-child(3) b{color:var(--green)}
+.pg{color:#1d7a43;font-weight:700}.pf{color:#d1495b;font-weight:700}
+.cy,.cw{display:inline-block;border-radius:12px;padding:3px 8px;font-size:.72rem;font-weight:700;white-space:nowrap}.cy{background:#e6f6ec;color:#1d7a43}.cw{background:#fff2d6;color:#8a5a00}
+td small{color:var(--mut)}
+.mod.lock{background:linear-gradient(145deg,#6d7c8b,#4f5d6b)}
+.mod:focus-visible,.inf:focus-visible,nav button:focus-visible{outline:3px solid #f2b134;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -157,9 +167,9 @@ nav{width:calc(100% - 24px);max-width:560px;align-self:center}
 <section class="screen" id="perfil">
 <h1>Crea tu perfil</h1>
 <div class="seg"><button id="rE" onclick="setRole('e')">🎒 Estudiante</button><button id="rD" onclick="setRole('d')">🧑‍🏫 Docente</button></div>
-<div class="f card"><input id="fn" placeholder="Tu nombre completo">
-<div id="fE"><select id="fg"><option>Grado 6°</option><option>Grado 7°</option><option>Grado 8°</option><option selected>Grado 9°</option><option>Grado 10°</option><option>Grado 11°</option></select><input id="fc" placeholder="Código de tu docente (ej. AB12)" maxlength="6" style="text-transform:uppercase"></div>
-<div id="fD" style="display:none"><input id="fpw" type="password" placeholder="Contraseña de docente" autocomplete="off"><button class="btn navy" type="button" id="fbt" style="margin-top:6px" onclick="unlockT()">Verificar</button><div id="fK" style="display:none"><input id="fk" placeholder="Nombre del curso (ej. 9°A)"><input id="fk2" placeholder="Tu código de curso (opcional, 4-6 letras)" maxlength="6" style="text-transform:uppercase"></div><small>Se generará un código para compartir con tus estudiantes.</small></div></div>
+<div class="f card"><input id="fn" aria-label="Nombre completo" placeholder="Tu nombre completo">
+<div id="fE"><select id="fg" aria-label="Grado"><option>Grado 6°</option><option>Grado 7°</option><option>Grado 8°</option><option selected>Grado 9°</option><option>Grado 10°</option><option>Grado 11°</option></select><input id="fc" aria-label="Código del docente" placeholder="Código de tu docente (ej. AB12)" maxlength="6" style="text-transform:uppercase"></div>
+<div id="fD" style="display:none"><input id="fpw" aria-label="Contraseña de docente" type="password" placeholder="Contraseña de docente" autocomplete="off"><button class="btn navy" type="button" id="fbt" style="margin-top:6px" onclick="unlockT()">Verificar</button><div id="fK" style="display:none"><input id="fk" aria-label="Nombre del curso" placeholder="Nombre del curso (ej. 9°A)"><input id="fk2" aria-label="Código de curso" placeholder="Tu código de curso (opcional, 4-6 letras)" maxlength="6" style="text-transform:uppercase"></div><small>Se generará un código para compartir con tus estudiantes.</small></div></div>
 <button class="btn" onclick="save()">Guardar perfil</button>
 <button class="btn navy" id="lo" style="display:none" onclick="logout()">Cerrar sesión</button>
 </section>
@@ -167,7 +177,8 @@ nav{width:calc(100% - 24px);max-width:560px;align-self:center}
 <section class="screen" id="panel">
 <h1>Panel docente</h1>
 <div class="card"><small>Código del curso <span id="pk"></span></small><div class="code" id="pc2"></div><small>Compártelo con tus estudiantes para que se unan.</small></div>
-<div class="card"><b>Seguimiento de estudiantes</b><div id="tb" style="overflow-x:auto"></div></div>
+<div id="sm"></div>
+<div class="card"><b>Seguimiento de estudiantes</b><small style="display:block;color:var(--mut)">M = módulo · verde: aprobado (60 % o más) · rojo: por repetir · —: sin presentar</small><div id="tb" style="overflow-x:auto"></div></div>
 </section>
 
 <section class="screen" id="menu">
@@ -188,7 +199,7 @@ nav{width:calc(100% - 24px);max-width:560px;align-self:center}
 <button class="back" onclick="go('modulo')">← Volver</button>
 <h2 id="ct"></h2><p id="cx"></p>
 <a class="video" id="vd" target="_blank" rel="noopener noreferrer" href="#" onclick="return playV()" style="text-decoration:none"><span>▶</span><small id="vt"></small></a><small id="vu" style="display:none;word-break:break-all;color:var(--mut)"></small>
-<div class="card" id="rs" style="display:none"><b>📊 Infografía</b><small style="display:block;color:var(--mut)">Toca la imagen para ampliarla.</small><img class="inf" id="inf" alt="Infografía: ¿Cómo identificar una fuente confiable?" onclick="zoom()"></div>
+<div class="card" id="rs" style="display:none"><b>📊 Infografía</b><small style="display:block;color:var(--mut)">Toca la imagen para ampliarla.</small><img class="inf" id="inf" alt="Infografía: ¿Cómo identificar una fuente confiable?" onclick="zoom()" tabindex="0" role="button" onkeydown="if(event.key==='Enter')zoom()"></div>
 <button class="btn" onclick="go('reto')">Continuar ›</button>
 </section>
 
@@ -268,9 +279,11 @@ var M=[
 var P=JSON.parse(ld('ir_p')||'null'),G=JSON.parse(ld('ir_g')||'{}'),cur=0,ans={},db=null,uid=null,unsub=null,rl='e';
 function ld(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function sv(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+var QZ=[];function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function $(i){return document.getElementById(i)}
 var ready=(async function(){try{var u=await claude.use("user");uid=u&&await u.id();db=await claude.use("db")}catch(e){}
 if(!uid){uid=ld('ir_id')||('u'+Math.random().toString(36).slice(2,10));sv('ir_id',uid)}
+if(db&&P&&P.r=='e'){try{var sd=await T(db.collection('students').doc(uid).get());if(sd.exists){var rp=sd.data().p||{};Object.keys(rp).forEach(function(k){if(!(G[k]>=rp[k]))G[k]=rp[k]});sv('ir_g',JSON.stringify(G))}}catch(e){}}
 if(P&&P.r=='e')push();who()})();
 function T(p){return Promise.race([p,new Promise(function(a,j){setTimeout(function(){j('t')},5000)})])}
 function who(){$('who').textContent=P?(P.r=='d'?'🧑‍🏫 ':'👤 ')+P.n.split(' ')[0]:'👤 Ingresar';$('lo').style.display=P?'block':'none'}
@@ -286,8 +299,8 @@ if(rl=='d'){if(!okT){toast('Ingresa la contraseña de docente');return}var k=$('
 try{if(db){var d=await T(db.collection('classes').doc(c).get());if(d.exists&&d.data().t&&d.data().t!==uid){toast('Ese código ya está en uso, elige otro');return}await T(db.collection('classes').doc(c).set({t:uid,k:k}))}}catch(e){}
 P={r:'d',n:n,k:k,c:c}}
 else{var c=$('fc').value.trim().toUpperCase();if(!c){toast('Pide el código a tu docente');return}
-try{if(db){var d=await T(db.collection('classes').doc(c).get());if(!d.exists){toast('Ese código no existe');return}}}catch(e){}
-P={r:'e',n:n,g:$('fg').value,c:c};G={}}
+try{if(db){var d=await T(db.collection('classes').doc(c).get());if(!d.exists){toast('Ese código no existe');return}}}catch(e){if(db){toast('No se pudo validar el código, intenta de nuevo');return}}
+var same=P&&P.r=='e'&&P.c===c;P={r:'e',n:n,g:$('fg').value,c:c};if(!same)G={}}
 sv('ir_p',JSON.stringify(P));sv('ir_g',JSON.stringify(G));sv('ir_cd','');who();push();start()}
 function logout(){P=null;G={};try{localStorage.removeItem('ir_p');localStorage.removeItem('ir_g');localStorage.removeItem('ir_cd')}catch(e){}if(unsub)unsub();unsub=null;who();go('inicio')}
 function push(){if(!db||!P||P.r!='e')return;try{db.collection('students').doc(uid).set({n:P.n,g:P.g,c:P.c,p:G,u:Date.now()}).catch(function(){})}catch(e){}}
@@ -296,31 +309,34 @@ function certUI(){var b=$('certbox'),ok=P&&P.r=='e'&&certDone();b.classList.togg
 b.innerHTML=ok?'<div class="cc">🎓</div><b>¡Felicidades! Aprobaste el curso</b><button class="btn" onclick="go(\'cert\')">Ver mi certificado ›</button>':'<b>🔒 Certificado final</b><p>Aprueba los '+M.length+' módulos para recibir tu certificado.</p>'}
 function fillCert(){var t=0;M.forEach(function(m,i){t+=G['m'+i]||0});var d=ld('ir_cd');if(!d){d=new Date().toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});sv('ir_cd',d)}
 $('cname').textContent=P.n;$('cavg').textContent=Math.round(t/M.length)+'%';$('cdate').textContent=d;$('ccode').textContent='IR-'+(P.c||'')+'-'+String(uid||'').replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase()}
-function unlocked(i){return i==0||G['m'+(i-1)]>=60}
+function unlocked(i){return (P&&P.r=='d')||i==0||G['m'+(i-1)]>=60}
 function menu(){$('mods').innerHTML=M.map(function(m,i){var u=unlocked(i),d=G['m'+i]>=60;return '<button class="mod '+m.c+(u?'':' lock')+(d?' done':'')+'" onclick="openMod('+i+')"><span>'+(u?m.i:'🔒')+'</span><small>MÓDULO '+(i+1)+'</small>'+m.t+'</button>'}).join('');
 $('pb').style.width=M.filter(function(m,i){return G['m'+i]>=60}).length/M.length*100+'%';certUI()}
-function openMod(i){if(!P){go('perfil');return}if(P.r=='d'){toast('Los docentes ven el seguimiento en el Panel');return}
-if(!unlocked(i)){toast('🔒 Completa el módulo '+i+' para desbloquear este');return}
+function openMod(i){if(!P){go('perfil');return}if(!unlocked(i)){toast('🔒 Completa el módulo '+i+' para desbloquear este');return}
 cur=i;var m=M[i];$('mt').innerHTML='Módulo '+(i+1)+'<br>'+m.t;$('mo').innerHTML=m.o.map(function(o){return '<li>'+o+'</li>'}).join('');
-$('ct').textContent=m.tt;$('cx').textContent=m.x;$('vt').textContent=m.v?'Ver video del tema':'Video próximamente';$('vd').href=m.v||'#';$('vu').style.display=m.v?'block':'none';$('vu').textContent=m.v?'Si no se abre, copia este enlace: '+m.v:'';$('rs').style.display=m.inf?'block':'none';if(m.inf)$('inf').src=m.inf;
+$('ct').textContent=m.tt;$('cx').textContent=m.x;$('vt').textContent=m.v?'Ver video del tema':'Video próximamente';$('vd').href=m.v||'#';$('vu').style.display=m.v?'block':'none';$('vu').textContent=m.v?'Si no se abre, copia este enlace: '+m.v:'';$('rs').style.display=m.inf?'block':'none';if(m.inf){$('inf').src=m.inf;$('inf').alt='Infografía: '+m.tt}
 $('rt').textContent='🎯 Reto '+(i+1)+': '+m.t;$('rm').textContent=m.r;$('et').textContent='📋 Evaluación del Reto '+(i+1);
-ans={};$('quiz').innerHTML=m.q.map(function(q,a){return '<div class="q"><b>'+(a+1)+'. '+q[0]+'</b>'+q[1].map(function(o,j){return '<label><input type="radio" name="q'+a+'" onchange="ans['+a+']='+j+'"> '+o+'</label>'}).join('')+'</div>'}).join('');go('modulo')}
+ans={};QZ=shuf(m.q.map(function(q){var o=shuf(q[1].map(function(t,k){return [t,k]}));return [q[0],o.map(function(x){return x[0]}),o.findIndex(function(x){return x[1]===q[2]})]}));$('quiz').innerHTML=QZ.map(function(q,a){return '<div class="q"><b>'+(a+1)+'. '+q[0]+'</b>'+q[1].map(function(o,j){return '<label><input type="radio" name="q'+a+'" onchange="ans['+a+']='+j+'"> '+o+'</label>'}).join('')+'</div>'}).join('');go('modulo')}
 function playV(){var m=M[cur];if(!m.v){toast('Aquí irá el video del tema');return false}return true}
 function zoom(){$('lbi').src=M[cur].inf;$('lb').classList.add('on')}
-function send(){var q=M[cur].q;if(Object.keys(ans).length<q.length){toast('Responde todas las preguntas');return}
+function send(){var q=QZ;if(Object.keys(ans).length<q.length){toast('Responde todas las preguntas');return}
 var ok=q.filter(function(x,i){return ans[i]===x[2]}).length,p=Math.round(ok/q.length*100),pass=p>=60;
-if(!(G['m'+cur]>p))G['m'+cur]=p;sv('ir_g',JSON.stringify(G));push();
+if(P.r!='d'){if(!(G['m'+cur]>p))G['m'+cur]=p;sv('ir_g',JSON.stringify(G));push()}
 $('sc').style.setProperty('--p',p);$('pc').textContent=p+'%';$('rh').textContent=pass?'¡Buen trabajo! ✅':'¡Casi lo logras!';
 $('lv').textContent=pass?'Aprobado':'Necesitas 60% para avanzar';
 $('fb').textContent=pass?(cur<M.length-1?'Desbloqueaste el módulo '+(cur+2)+'.':'¡Completaste todos los módulos! 🎓 Ya puedes obtener tu certificado.'):'Repasa el tema e inténtalo de nuevo.';
 $('rb').textContent=pass?'🏠 Volver a módulos':'↻ Reintentar';$('rb').onclick=function(){pass?go('menu'):openMod(cur)};$('rcert').style.display=(pass&&certDone())?'block':'none';go('result')}
 function panel(){if(!P||P.r!='d'){$('tb').textContent='Esta sección es solo para docentes.';return}
 $('pk').textContent='· '+P.k;$('pc2').textContent=P.c;
-if(!db){$('tb').textContent='El seguimiento compartido no está disponible en esta vista.';return}
+if(!db){$('tb').textContent='El seguimiento compartido solo funciona al abrir la app desde su enlace publicado en Claude, con la sesión iniciada.';return}
 if(unsub)return;try{unsub=db.collection('students').where('c','==',P.c).onSnapshot(function(s){
 var r=s.docs.map(function(d){return d.data()});
-$('tb').innerHTML=r.length?'<table><tr><th>Estudiante</th>'+M.map(function(m,i){return '<th>M'+(i+1)+'</th>'}).join('')+'<th>Avance</th></tr>'+r.map(function(x){var p=x.p||{},n=M.filter(function(m,i){return p['m'+i]>=60}).length;
-return '<tr><td>'+esc(x.n)+'<br><small>'+esc(x.g)+'</small></td>'+M.map(function(m,i){return '<td>'+(p['m'+i]!=null?p['m'+i]+'%':'—')+'</td>'}).join('')+'<td><div class="bar"><i style="width:'+n/M.length*100+'%"></i></div></td></tr>'}).join('')+'</table>':'Aún no hay estudiantes en tu curso.'},function(){$('tb').textContent='No se pudo leer el seguimiento.'})}catch(e){}}
+r.sort(function(a,b){return String(a.n).localeCompare(String(b.n))});
+var okc=function(x){var p=x.p||{};return M.every(function(m,i){return p['m'+i]>=60})},nm=function(x){var p=x.p||{};return M.filter(function(m,i){return p['m'+i]>=60}).length},
+cn=r.filter(okc).length,av=r.length?Math.round(r.reduce(function(t,x){return t+nm(x)},0)/(r.length*M.length)*100):0;
+$('sm').innerHTML=r.length?'<div class="stt"><div><b>'+r.length+'</b><small>Estudiantes</small></div><div><b>'+av+'%</b><small>Avance del curso</small></div><div><b>'+cn+'</b><small>Certificados</small></div></div>':'';
+$('tb').innerHTML=r.length?'<table><tr><th>Estudiante</th>'+M.map(function(m,i){return '<th>M'+(i+1)+'</th>'}).join('')+'<th>Avance</th><th>Certificado</th></tr>'+r.map(function(x){var p=x.p||{},n=nm(x);
+return '<tr><td>'+esc(x.n)+'<br><small>'+esc(x.g)+'</small></td>'+M.map(function(m,i){var v=p['m'+i];return '<td class="'+(v>=60?'pg':v!=null?'pf':'')+'">'+(v!=null?v+'%':'—')+'</td>'}).join('')+'<td><div class="bar"><i style="width:'+n/M.length*100+'%"></i></div><small>'+n+'/'+M.length+'</small></td><td>'+(okc(x)?'<span class="cy">🎓 Sí</span>':'<span class="cw">⏳ En curso</span>')+'</td></tr>'}).join('')+'</table>':'Aún no hay estudiantes en tu curso.'},function(){$('tb').textContent='No se pudo leer el seguimiento. Solo el propietario o editores de la app pueden ver a los estudiantes.';unsub=null})}catch(e){}}
 function esc(t){return String(t||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function go(id){
 if((id=='menu'||id=='modulo')&&!P){id='perfil'}
